@@ -7,12 +7,18 @@ var specialCharacters = ['~', '!', '@', '#', '$', '%', '^', '&', '*', '(', ')', 
 var promptArray = [];
 
 function generatePassword() {
-
+  var generatedPassword = "";
+  for (var i = 0; i < passwordLength; i++) {
+    var randomIndex = Math.floor(Math.random() * choiceArr.length);
+    generatedPassword = generatedPassword + promptArray[randomIndex];
+  }
+  return generatedPassword;
 }
 
 function getPrompts() {
+  promptArray = [];
   passwordLength = parseInt(prompt("How many characters would you like your password to have? Chose a number between 8-128"));
-  
+
   if (isNaN(passwordLength) || passwordLength < 8 || passwordLength > 128) {
     alert("Invalid answer. Please enter a numerical value between 8-128.");
     return false;
@@ -32,16 +38,20 @@ function getPrompts() {
   }
   return true;
 }
+
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
 
 // Write password to the #password input
 function writePassword() {
-  var password = generatePassword();
-  var passwordText = document.querySelector("#password");
+  var correctPrompts = getPrompts();
 
-  passwordText.value = password;
+  if (correctPrompts) {
+    var password = generatePassword();
+    var passwordText = document.querySelector("#password");
 
+    passwordText.value = password;
+  }
 }
 
 // Add event listener to generate button
