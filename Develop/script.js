@@ -8,8 +8,9 @@ var promptArray = [];
 
 function generatePassword() {
   var generatedPassword = "";
+  //for loop to generate random characters based on the promptArray selected by the user
   for (var i = 0; i < passwordLength; i++) {
-    var randomIndex = Math.floor(Math.random() * choiceArr.length);
+    var randomIndex = Math.floor(Math.random() * promptArray.length);
     generatedPassword = generatedPassword + promptArray[randomIndex];
   }
   return generatedPassword;
@@ -17,13 +18,16 @@ function generatePassword() {
 
 function getPrompts() {
   promptArray = [];
+  //use parseInt to convert string to a rounded integer
   passwordLength = parseInt(prompt("How many characters would you like your password to have? Chose a number between 8-128"));
 
+  //use isNaN to confirm the length of password was entered in numerical value. check that the value was between 8 and 128
   if (isNaN(passwordLength) || passwordLength < 8 || passwordLength > 128) {
     alert("Invalid answer. Please enter a numerical value between 8-128.");
     return false;
   }
 
+  //prompt user of different character options
   if (confirm("Would you like your password to contain lowercase letters?")) {
     promptArray = promptArray.concat(lowerCase);
   }
@@ -45,12 +49,14 @@ var generateBtn = document.querySelector("#generate");
 // Write password to the #password input
 function writePassword() {
   var correctPrompts = getPrompts();
+  var passwordText = document.querySelector("#password");
 
+  //if prompts are answered correctly password will generate, if not no new password will be generated
   if (correctPrompts) {
     var password = generatePassword();
-    var passwordText = document.querySelector("#password");
-
     passwordText.value = password;
+  } else {
+    passwordText.value = "";
   }
 }
 
