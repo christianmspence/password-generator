@@ -38,5 +38,5 @@
   No contribution accepted at this point. 
   
   ## Questions or Comments
-  If you have any questions regarding the following project or repo, please contact me at [christianmspence@gmail.com] (mailto:christianmspence@gmail.com). 
+  If you have any questions regarding the following project or repo, please contact me at [christianmspence@gmail.com]. 
   To view more projects please visit my GitHub at https://github.com/christianmspence.
